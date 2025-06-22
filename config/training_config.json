@@ -1,0 +1,15 @@
+{
+    "training_data_path": "data/sentiment_train.csv",
+    "validation_data_path": "data/sentiment_val.csv",
+    "model": {
+        "tokenizer_pretrained_model": "huawei-noah/TinyBERT_General_4L_312D",
+        "max_input_length": 256,
+        "batch_size": 32,
+        "model_name": "huawei-noah/TinyBERT_General_4L_312D",
+        "learning_rate": 1e-4
+    },
+    "n_epochs": 2,
+    "train_dir": "train_dir",
+    "best_model_path": "trained_models/t5_model.pth",
+    "losses_curve_path": "figs/training_validation_loss_curve.png"
+}

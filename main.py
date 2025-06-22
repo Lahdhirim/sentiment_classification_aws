@@ -5,6 +5,9 @@ import subprocess
 from src.config_loaders.preprocessing_config_loader import preprocessing_config_loader
 from src.preprocessing_pipeline import PreprocessingPipeline
 
+from src.config_loaders.training_config_loader import training_config_loader
+from src.training_pipeline import TrainingPipeline
+
 if __name__ == "__main__":
 
     # Parse command-line argument to determine which mode to run
@@ -22,7 +25,10 @@ if __name__ == "__main__":
         processing_pipeline.run()
     
     elif args.mode == "train":
-        pass
+        # Load training config and run training pipeline
+        training_config = training_config_loader(config_path="config/training_config.json")
+        training_pipeline = TrainingPipeline(config=training_config)
+        training_pipeline.run()
     
     else:
         print("Invalid mode. Please choose 'process_data', 'train', 'test', or 'inference'.")
