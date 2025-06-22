@@ -1,5 +1,9 @@
 import streamlit as st
 from transformers import pipeline
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from src.aws_services.s3_service import S3Manager
 from src.config_loaders.inference_config_loader import inference_config_loader
 
