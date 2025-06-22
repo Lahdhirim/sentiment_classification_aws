@@ -6,6 +6,7 @@ class TestingConfig(BaseModel):
     test_data_path: str = Field(..., description="Path to load the test data file")
     trained_model_path: str = Field(..., description="Path to load the trained model")
     batch_size: int = Field(default=32, description="Batch size required for Dataloader")
+    metrics_output_file: str = Field(..., description="Path to save the performance metrics")
 
 def testing_config_loader(config_path: str) -> TestingConfig:
     try:

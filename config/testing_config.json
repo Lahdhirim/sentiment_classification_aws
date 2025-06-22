@@ -1,5 +1,6 @@
 {
     "test_data_path": "data/sentiment_test.csv",
     "trained_model_path": "trained_models/best_model_25_epochs",
-    "batch_size": 32
+    "batch_size": 32,
+    "metrics_output_file": "data/output/performance_metrics.csv"
 }

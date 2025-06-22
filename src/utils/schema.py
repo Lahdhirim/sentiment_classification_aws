@@ -5,3 +5,6 @@ class DataSchema:
 
 class MetricSchema:
     ACCURACY = "accuracy"
+    PRECISION = "precision"
+    RECALL = "recall"
+    F1_SCORE = "f1_score"
