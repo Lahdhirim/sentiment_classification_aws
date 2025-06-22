@@ -5,6 +5,7 @@
 
 ✅​​ Testing Pipeline : Evaluate the trained model and push model to **S3** bucket using **Boto3** (if the model meets the specified accuracy threshold)
 
+✅​​ Deploy the model on **Streamlit Share Server** (Public link: https://sentimentclassificationaws-nq67u8bs4qsjdwcqsa4lso.streamlit.app/)
 
 ​⏳ Deploy the model on **AWS EC2** instance and make prediction using **Streamlit** and **FastAPI**
 
@@ -13,5 +14,3 @@
 - Add dropout layer control in the configuration.
 - Disable learning rate warmup, otherwise the learning rate can remind too low and results in a fast overfiting.
 
-## Model Deploiement using Streamlit Share
-Public Link: https://sentimentclassificationaws-nq67u8bs4qsjdwcqsa4lso.streamlit.app/
