@@ -1,0 +1,12 @@
+{
+    "url_data": "https://raw.githubusercontent.com/laxmimerit/All-CSV-ML-Data-Files-Download/master/IMDB-Dataset.csv",
+    "label_mapping_dict": {
+        "negative": 0,
+        "positive": 1
+    },
+    "test_size": 0.2,
+    "validation_size": 0.2,
+    "training_data_path": "data/sentiment_train.csv",
+    "validation_data_path": "data/sentiment_val.csv",
+    "test_data_path": "data/sentiment_test.csv"
+}
