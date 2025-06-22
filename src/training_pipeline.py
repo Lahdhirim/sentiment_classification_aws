@@ -96,8 +96,6 @@ class TrainingPipeline(BasePipeline):
         
         # Save the best model for Testing and Inference
         trainer.save_model(self.config.best_model_path)
-
-        # Push the model to S3 bucket if enabled
         
         print(f"{Fore.GREEN}Training pipeline completed successfully!{Style.RESET_ALL}")
 

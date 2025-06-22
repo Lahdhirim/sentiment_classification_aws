@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from typing import List, Dict, Any
+from typing import List, Dict
 from src.utils.schema import MetricSchema
 from colorama import Fore, Style
 
@@ -14,7 +14,7 @@ class MetricsCalculator:
         self.pred_labels = pred_labels
         self.output_csv_path = output_csv_path
 
-    def calculate_metrics(self) -> None:
+    def calculate_metrics(self) -> Dict[str, float]:
         accuracy = accuracy_score(self.true_labels, self.pred_labels)
         precision = precision_score(self.true_labels, self.pred_labels, pos_label="positive")
         recall = recall_score(self.true_labels, self.pred_labels, pos_label="positive")
@@ -30,3 +30,5 @@ class MetricsCalculator:
         df = pd.DataFrame([metrics])
         df.to_csv(self.output_csv_path, index=False)
         print(Fore.MAGENTA + f"CSV file with performance metrics saved at {self.output_csv_path}." + Style.RESET_ALL)
+
+        return metrics

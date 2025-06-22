@@ -1,9 +1,10 @@
 # Sentiment Classifier Applicaton using **Hugging Face Transformers** and **AWS Services (S3, EC2)** (Under Construction)
 ✅​ Preprocessing Pipeline : load, clean and split data
 
-✅​ Training Pipeline : Train **TinyBERT** model and push model to **S3** bucket using **Boto3**
+✅​ Training Pipeline : Train **TinyBERT** model
 
-✅​​ Testing Pipeline : Evaluate the trained model
+✅​​ Testing Pipeline : Evaluate the trained model and push model to **S3** bucket using **Boto3** (if the model meets the specified accuracy threshold)
+
 
 ​⏳ Deploy the model on **AWS EC2** instance and make prediction using **Streamlit**
 

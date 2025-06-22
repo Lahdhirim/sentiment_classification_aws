@@ -2,5 +2,14 @@
     "test_data_path": "data/sentiment_test.csv",
     "trained_model_path": "trained_models/best_model_25_epochs",
     "batch_size": 32,
-    "metrics_output_file": "data/output/performance_metrics.csv"
+    "metrics_output_file": "data/output/performance_metrics.csv",
+    "push_model_s3": {
+        "enabled": true,
+        "conditions": [
+            {"metric": "accuracy", "threshold": 0.80},
+            {"metric": "precision", "threshold": 0.90}
+        ],
+        "bucket_name": "sentiment-classifier-bucket",
+        "prefix": "ml_models/"
+    }
 }
