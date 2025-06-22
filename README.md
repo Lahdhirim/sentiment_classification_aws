@@ -6,7 +6,7 @@
 ✅​​ Testing Pipeline : Evaluate the trained model and push model to **S3** bucket using **Boto3** (if the model meets the specified accuracy threshold)
 
 
-​⏳ Deploy the model on **AWS EC2** instance and make prediction using **Streamlit**
+​⏳ Deploy the model on **AWS EC2** instance and make prediction using **Streamlit** and **FastAPI**
 
 ## Steps to reduce overfitting
 - Freeze the backbone of the model during training. Note that keeping the last encoder layer (bert.encoder.layer.3) trainable allows for greater task-specific adaptation; otherwise, the classifier alone is too simple to capture complex patterns (Accuracy 66%). 
