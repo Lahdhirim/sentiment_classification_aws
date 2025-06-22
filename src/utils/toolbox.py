@@ -25,7 +25,8 @@ def plot_training_and_validation_curves(train_losses: list,
     ax1.plot(val_losses, label="Validation Loss", color='orange')
     ax1.set_xlabel("Epoch")
     ax1.set_ylabel("Loss")
-    ax1.legend(loc='upper left')
+    ax2.set_title("Loss")
+    ax1.legend()
     ax1.grid(True)
 
     # metrics plot
