@@ -12,3 +12,6 @@
 - Freeze the backbone of the model during training. Note that keeping the last encoder layer (bert.encoder.layer.3) trainable allows for greater task-specific adaptation; otherwise, the classifier alone is too simple to capture complex patterns (Accuracy 66%). 
 - Add dropout layer control in the configuration.
 - Disable learning rate warmup, otherwise the learning rate can remind too low and results in a fast overfiting.
+
+## Model Deploiement using Streamlit Share
+Public Link: https://sentimentclassificationaws-nq67u8bs4qsjdwcqsa4lso.streamlit.app/
