@@ -1,7 +1,7 @@
 from src.config_loaders.training_config_loader import TrainingConfig
 from colorama import Fore, Style
 from src.base_pipeline import BasePipeline
-from src.utils.toolbox import load_csv_data, plot_training_and_validation_losses, clean_checkpoints
+from src.utils.toolbox import load_csv_data, plot_training_and_validation_curves, clean_checkpoints
 from datasets import Dataset
 from src.modeling.model import ModelBuilder
 from src.utils.schema import DataSchema, MetricSchema
@@ -82,13 +82,15 @@ class TrainingPipeline(BasePipeline):
 
         trainer.train()
 
-        # Save the training and validation loss curves
+        # Save the training and validation curves (loss and accuracy)
         training_logs = trainer.state.log_history
         train_losses = [log["loss"] for log in training_logs if "loss" in log]
         val_losses = [log["eval_loss"] for log in training_logs if "eval_loss" in log]
-        plot_training_and_validation_losses(train_losses=train_losses,
+        val_accuracies = [log[f"eval_{MetricSchema.ACCURACY}"] for log in training_logs if f"eval_{MetricSchema.ACCURACY}" in log]
+        plot_training_and_validation_curves(train_losses=train_losses,
                                             val_losses=val_losses,
-                                            save_path=self.config.losses_curve_path)
+                                            val_metrics=val_accuracies,
+                                            save_path=self.config.training_curve_path)
         
         # Save the best model for Testing and Inference
         trainer.save_model(self.config.best_model_path)

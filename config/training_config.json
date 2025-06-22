@@ -13,5 +13,5 @@
     "train_dir": "train_dir",
     "clean_train_dir_before_training": true,
     "best_model_path": "trained_models/best_model",
-    "losses_curve_path": "figs/training_validation_loss_curve.png"
+    "training_curve_path": "figs/training_validation_curves.png"
 }
