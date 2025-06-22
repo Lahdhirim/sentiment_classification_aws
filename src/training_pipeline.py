@@ -53,6 +53,7 @@ class TrainingPipeline(BasePipeline):
                         )
         
         # Train the model
+        print(f"{Fore.YELLOW}Starting the training loop...{Style.RESET_ALL}")
         args = TrainingArguments(
                 output_dir=self.config.train_dir,
                 overwrite_output_dir=True,

@@ -6,3 +6,8 @@
 ​⏳​​ Evaluation Pipeline : Evaluate the trained model
 
 ​⏳ Deploy the model on **AWS EC2** instance and make prediction using **Streamlit**
+
+## Steps to reduce overfitting
+- Freeze the backbone of the model during training. Note that keeping the last encoder layer (bert.encoder.layer.3) trainable allows for greater task-specific adaptation; otherwise, the classifier alone is too simple to capture complex patterns (Accuracy 66%). 
+- Add dropout layer control in the configuration.
+- Disable learning rate warmup, otherwise the learning rate can remind too low and results in a fast overfiting.
