@@ -12,7 +12,8 @@ class ModelBuilder:
         label2id: dict,
         tokenizer_pretrained_model: str,
         learning_rate: float,
-        dropout_rate: Optional[float] = None,
+        freeze_backbone: bool,
+        dropout_rate: Optional[float] = None
     ):
         self.model_name=model_name
         self.num_labels=num_labels
@@ -20,6 +21,7 @@ class ModelBuilder:
         self.label2id=label2id
         self.tokenizer_pretrained_model=tokenizer_pretrained_model
         self.learning_rate=learning_rate
+        self.freeze_backbone=freeze_backbone
         self.dropout_rate=dropout_rate
   
     def _print_trainable_parameters(self, model: nn.Module) -> None:
@@ -37,6 +39,13 @@ class ModelBuilder:
             label2id=self.label2id
         )
         print(f"{Fore.CYAN}Model loaded.{Style.RESET_ALL}")
+
+        # Freeze encoder if specified
+        if self.freeze_backbone:
+            for name, param in model.named_parameters():
+                if not name.startswith("classifier"): 
+                    param.requires_grad = False
+            print(f"{Fore.CYAN}Encoder parameters frozen.{Style.RESET_ALL}")
 
         # Control Dropout rate
         if self.dropout_rate:

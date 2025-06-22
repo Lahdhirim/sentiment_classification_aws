@@ -37,6 +37,7 @@ class TrainingPipeline(BasePipeline):
                                      label2id=label2id,
                                      tokenizer_pretrained_model=self.config.model.tokenizer_pretrained_model,
                                      learning_rate=self.config.model.learning_rate,
+                                     freeze_backbone=self.config.model.freeze_backbone,
                                      dropout_rate=self.config.model.dropout_rate)
         model, tokenizer = model_builder.initialize()
 

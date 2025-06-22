@@ -7,7 +7,8 @@
         "batch_size": 32,
         "model_name": "huawei-noah/TinyBERT_General_4L_312D",
         "learning_rate": 2e-5,
-        "dropout_rate": 0.3
+        "dropout_rate": 0.3,
+        "freeze_backbone": true
     },
     "n_epochs": 10,
     "train_dir": "train_dir",
