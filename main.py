@@ -15,8 +15,8 @@ if __name__ == "__main__":
 
     # Parse command-line argument to determine which mode to run
     parser = argparse.ArgumentParser(description="Sentiment Prediction")
-    parser.add_argument("mode", choices=["process_data", "train", "test"],
-                        default="process_data", nargs="?", help="Choose mode: process_data, train or test")
+    parser.add_argument("mode", choices=["process_data", "train", "test", "inference"],
+                        default="process_data", nargs="?", help="Choose mode: process_data, train, test, or inference")
     args = parser.parse_args()
 
     # Launch the appropriate pipeline based on the selected mode
@@ -38,6 +38,10 @@ if __name__ == "__main__":
         testing_config = testing_config_loader(config_path="config/testing_config.json")
         testing_pipeline = TestingPipeline(config=testing_config)
         testing_pipeline.run()
+    
+    elif args.mode == "inference":
+        # Run the Streamlit app
+        subprocess.run(["streamlit", "run", "src/web_app/app.py"])
     
     else:
         print("Invalid mode. Please choose 'process_data', 'train', 'test', or 'inference'.")

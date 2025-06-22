@@ -1,0 +1,6 @@
+{
+    "bucket_name": "sentiment-classifier-bucket",
+    "local_model_dir": "downloaded_models/",
+    "s3_model_prefix": "ml-models/",
+    "model_task": "text-classification"
+}
