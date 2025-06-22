@@ -43,7 +43,10 @@ class ModelBuilder:
         # Freeze encoder if specified
         if self.freeze_backbone:
             for name, param in model.named_parameters():
-                if not name.startswith("classifier"): 
+                if not (
+                        name.startswith("classifier") or 
+                        name.startswith("bert.encoder.layer.3.") # Keeping layer 3 trainable allows for greater task-specific adaptation; otherwise, the classifier alone is too simple to capture complex patterns
+                    ):
                     param.requires_grad = False
             print(f"{Fore.CYAN}Encoder parameters frozen.{Style.RESET_ALL}")
 
