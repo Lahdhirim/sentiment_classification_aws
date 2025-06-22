@@ -8,7 +8,7 @@ class ModelConfig(BaseModel):
     batch_size: int = Field(..., description="Batch size required for Dataloader")
     model_name: str = Field(default="t5-base", description="Name of the model to use")
     learning_rate: float = Field(default=1e-4, description="Learning rate for the optimizer")
-
+    dropout_rate: Optional[float] = Field(None, ge=0.0, le=1.0, description="Dropout rate to prevent overfitting")
 
 class TrainingConfig(BaseModel):
     training_data_path: str = Field(..., description="Path to load the training data file")

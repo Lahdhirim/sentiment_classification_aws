@@ -28,9 +28,16 @@ class TrainingPipeline(BasePipeline):
 
         # Create the model and the tokenizer
         print(f"{Fore.YELLOW}Creating model and tokenizer...{Style.RESET_ALL}")
+        num_labels = train_data[DataSchema.LABEL].nunique() 
+        label2id = {label: idx for idx, label in enumerate(sorted(train_data[DataSchema.SENTIMENT].unique()))}
+        id2label = {idx: label for label, idx in label2id.items()}
         model_builder = ModelBuilder(model_name=self.config.model.model_name,
+                                     num_labels=num_labels,
+                                     id2label=id2label,
+                                     label2id=label2id,
                                      tokenizer_pretrained_model=self.config.model.tokenizer_pretrained_model,
-                                     learning_rate=self.config.model.learning_rate)
+                                     learning_rate=self.config.model.learning_rate,
+                                     dropout_rate=self.config.model.dropout_rate)
         model, tokenizer = model_builder.initialize()
 
         train_dataset = train_dataset.map(
@@ -50,6 +57,7 @@ class TrainingPipeline(BasePipeline):
                 overwrite_output_dir=True,
                 num_train_epochs=self.config.n_epochs,
                 learning_rate=self.config.model.learning_rate,
+                lr_scheduler_type='constant', # Disable learning rate warmup (can result to a fast overfitting)
                 per_device_train_batch_size=self.config.model.batch_size,
                 per_device_eval_batch_size=self.config.model.batch_size,
                 eval_strategy='epoch',
@@ -71,7 +79,7 @@ class TrainingPipeline(BasePipeline):
         
         if self.config.clean_train_dir_before_training:
             clean_checkpoints(train_dir=self.config.train_dir)
-            
+
         trainer.train()
 
         # Save the training and validation loss curves
