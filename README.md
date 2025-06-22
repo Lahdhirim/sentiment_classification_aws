@@ -5,4 +5,4 @@
 
 ​⏳​​ Evaluation Pipeline : Evaluate the trained model
 
-​⏳ Deploy the model on **AWS EC2** instance and make prediction using **FastAPI**
+​⏳ Deploy the model on **AWS EC2** instance and make prediction using **Streamlit**

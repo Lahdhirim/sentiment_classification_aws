@@ -10,7 +10,7 @@
         "dropout_rate": 0.3,
         "freeze_backbone": true
     },
-    "n_epochs": 10,
+    "n_epochs": 25,
     "train_dir": "train_dir",
     "clean_train_dir_before_training": true,
     "best_model_path": "trained_models/best_model",
