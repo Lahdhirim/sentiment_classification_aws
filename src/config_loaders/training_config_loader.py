@@ -16,6 +16,7 @@ class TrainingConfig(BaseModel):
     model: ModelConfig = Field(..., description="Model-related configuration")
     n_epochs: int = Field(..., description="Number of epochs for training the model")
     train_dir: str = Field(..., description="Directory to save the training files")
+    clean_train_dir_before_training: bool = Field(default=True, description="Whether to clean the training directory before training")
     best_model_path: str = Field(..., description="Path to save the best model during training")
     losses_curve_path: str = Field(..., description="Path to save the losses curve during training")
 

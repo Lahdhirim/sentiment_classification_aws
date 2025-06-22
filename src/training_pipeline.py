@@ -1,10 +1,10 @@
 from src.config_loaders.training_config_loader import TrainingConfig
 from colorama import Fore, Style
 from src.base_pipeline import BasePipeline
-from src.utils.toolbox import load_csv_data
+from src.utils.toolbox import load_csv_data, plot_training_and_validation_losses, clean_checkpoints
 from datasets import Dataset
 from src.modeling.model import ModelBuilder
-from src.utils.schema import DataSchema
+from src.utils.schema import DataSchema, MetricSchema
 from transformers import TrainingArguments, Trainer
 from src.evaluators.accuracy import compute_accuracy
 
@@ -52,7 +52,12 @@ class TrainingPipeline(BasePipeline):
                 learning_rate=self.config.model.learning_rate,
                 per_device_train_batch_size=self.config.model.batch_size,
                 per_device_eval_batch_size=self.config.model.batch_size,
-                eval_strategy='epoch'
+                eval_strategy='epoch',
+                logging_strategy='epoch',
+                save_strategy="epoch",
+                load_best_model_at_end=True,
+                metric_for_best_model=MetricSchema.ACCURACY,
+                greater_is_better=True 
             )
         
         trainer = Trainer(
@@ -63,7 +68,24 @@ class TrainingPipeline(BasePipeline):
                 compute_metrics=compute_accuracy,
                 tokenizer=tokenizer
             )
+        
+        if self.config.clean_train_dir_before_training:
+            clean_checkpoints(train_dir=self.config.train_dir)
+            
         trainer.train()
+
+        # Save the training and validation loss curves
+        training_logs = trainer.state.log_history
+        train_losses = [log["loss"] for log in training_logs if "loss" in log]
+        val_losses = [log["eval_loss"] for log in training_logs if "eval_loss" in log]
+        plot_training_and_validation_losses(train_losses=train_losses,
+                                            val_losses=val_losses,
+                                            save_path=self.config.losses_curve_path)
+        
+        # Save the best model for Testing and Inference
+        trainer.save_model(self.config.best_model_path)
+
+        # Push the model to S3 bucket if enabled
         
         print(f"{Fore.GREEN}Training pipeline completed successfully!{Style.RESET_ALL}")
 
