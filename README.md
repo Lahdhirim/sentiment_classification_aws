@@ -85,7 +85,7 @@
       Paste the following:
       ```bash
       #!/bin/bash
-      cd /home/ubuntu/mlops/NLP_sentiment_classification_aws || exit
+      cd /home/ubuntu/mlops/NLP_sentiment_classification_aws
       source /home/ubuntu/.bashrc
       /home/ubuntu/.local/bin/streamlit run src/web_app/app.py >> /home/ubuntu/streamlit.log 2>&1
       ```
