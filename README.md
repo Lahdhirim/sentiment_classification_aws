@@ -103,6 +103,11 @@
         @reboot /home/ubuntu/start_streamlit.sh
         ```
 
+Each time the instance is rebooted, Streamlit will automatically launch the web application at the address  `http://<public IPv4 address>:8501`. A log file named  `streamlit.log` will be created in the  `/home/ubuntu` directory. This file can be used to monitor the application’s status and debug any errors.\
+The application will be publicly accessible to anyone with the instance’s public IP address. Access can be controlled via the EC2 Security Group:
+- To allow access from any IP address, set the Source  `to 0.0.0.0/0` on TCP port  `8501`.\
+    ⚠️ Use  `0.0.0.0/0` only if you're aware of the security implications. For more restricted access, specify your own IP or a limited range.
+
 
 
 
