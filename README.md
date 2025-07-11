@@ -98,7 +98,7 @@
         ```bash
         crontab -e
         ```
-        Add following line at the end of file:
+        Add the following line at the end of file:
         ```bash
         @reboot /home/ubuntu/start_streamlit.sh
         ```
