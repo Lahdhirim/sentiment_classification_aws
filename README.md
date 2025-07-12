@@ -50,8 +50,8 @@
         ```
     - Clone your GitHub repo:
         ```bash
-        git clone https://github.com/Lahdhirim/NLP_sentiment_classification_aws.git
-        cd NLP_sentiment_classification_aws
+        git clone https://github.com/Lahdhirim/NLP-sentiment-classification-aws.git
+        cd NLP-sentiment-classification-aws
         ```
     - Install dependencies:
         ```bash
