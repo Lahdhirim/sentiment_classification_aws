@@ -92,6 +92,10 @@ The main steps of the evaluation pipeline are as follows:
 
 - Allows users to input a review and receive a sentiment prediction
 
+<div style="text-align: center;">
+    <img src="assets/pipelines_schema.png" alt="CV" width="950", height="550"/>
+</div>
+
 ## AWS Services Configuration for Model Deployment
 1. Create a User using **AWS IAM Service** with the following permissions:
     - `AmazonEC2FullAccess`
