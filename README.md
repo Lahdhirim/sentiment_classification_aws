@@ -1,11 +1,11 @@
-# Sentiment Classifier Applicaton using **Hugging Face Transformers** and **AWS Services (S3, EC2)**
+# Sentiment Classifier Application using **Hugging Face Transformers** and **AWS Services (S3, EC2)**
 
-This project is a sentiment classifier tool built using **Hugging Face** libraries and deployed using **AWS services** such as S3 for data storage, EC2 for running the tool during inference. It provides a fully customizable pipelines for:
+This project is a sentiment classifier tool built using **Hugging Face** libraries and deployed using **AWS services** such as S3 for data storage and EC2 for running the tool during inference. It provides a fully customizable pipelines for:
 - Data processing
 - Model fine-tuning
-- Model evaluation including automatic pushing to S3 bucket based on performance metrics\
+- Model evaluation including automatic deployment to S3 bucket based on performance metrics\
 
-The final model is deployed on both **Streamlit Share Server** (Public link: https://sentimentclassificationaws-nq67u8bs4qsjdwcqsa4lso.streamlit.app/) and **AWS EC2** instance.
+The final model is deployed on both the **Streamlit Share Server** (Public link: https://sentimentclassificationaws-nq67u8bs4qsjdwcqsa4lso.streamlit.app/) and **AWS EC2** instance.
 
 ![Demo](assets/demo_streamlit.gif)
 
@@ -24,7 +24,7 @@ This tool can be used in various applications such as:
 
 ## Pipelines Overview
 
-### Data Preprocessing ([src/preprocessing_pipeline.py](src/preprocessing_pipeline.py))
+### Data Preprocessing Pipeline ([src/preprocessing_pipeline.py](src/preprocessing_pipeline.py))
 *Configurable via:* [config/preprocessing_config.json](config/preprocessing_config.json)
 | Parameter              | Description                                                                 |
 |------------------------|-----------------------------------------------------------------------------|
@@ -37,9 +37,9 @@ This tool can be used in various applications such as:
 | `test_data_path`       | File path to save the processed test dataset                              |
 
 The main steps of the data preprocessing pipeline are as follows:
-- Load data and map labels to numerical values. 
-- Split into training, validation, and test sets.  
-- Save processed datasets for later stages.
+- Load data and map labels to numerical values 
+- Split into training, validation, and test sets  
+- Save processed datasets for later stages
 
 ### Training Pipeline ([src/training_pipeline.py](src/training_pipeline.py)) 
 *Configurable via:* [config/training_config.json](config/training_config.json)
@@ -61,10 +61,10 @@ The main steps of the data preprocessing pipeline are as follows:
 | `training_curve_path`              | File path to save the training/validation loss and metrics plots  
 
 The main steps of the train pipeline are as follows:
-- Load configuration and initialize model and tokenizer. 
-- Fine-tune the model on training data. using the library `transformers` from Hugging Face. 
-- Save the best model based on validation loss.
-- Save training curves to visualize performance during training.
+- Load configuration and initialize model and tokenizer 
+- Fine-tune the model on training data using the library `transformers` from **Hugging Face**
+- Save the best model based on validation loss
+- Save training curves to visualize performance during training
 
 ### Evaluation Pipeline ([src/testing_pipeline.py](src/testing_pipeline.py))
 *Configurable via:* [config/testing_config.json](config/testing_config.json)
@@ -82,15 +82,15 @@ The main steps of the train pipeline are as follows:
 | `push_model_s3.prefix`                 | Folder or path prefix in the bucket under which the model will be stored                      |
 
 The main steps of the evaluation pipeline are as follows:
-- Load the best trained model.  
-- Predict on the test set.  
-- Evaluate the model using classification metrics (e.g., accuracy, precision, recall).
-- Save the performance metrics to a CSV file.
-- Push the model to S3 if defined conditions are satisfied.
+- Load the best trained model  
+- Predict on the test set  
+- Evaluate the model using classification metrics (e.g., accuracy, precision, recall)
+- Save the performance metrics to a CSV file
+- Push the model to S3 if defined conditions are satisfied
 
 ### Inference via Web Application
 
-- Allows users to input a review and receive a sentiment prediction.
+- Allows users to input a review and receive a sentiment prediction
 
 ## AWS Services Configuration for Model Deployment
 1. Create a User using **AWS IAM Service** with the following permissions:
@@ -183,7 +183,7 @@ The application will be publicly accessible to anyone with the instance’s publ
 ## (BONUS) Steps to reduce overfitting
 - Freeze the backbone of the model during training. Note that keeping the last encoder layer (bert.encoder.layer.3) trainable allows for greater task-specific adaptation; otherwise, the classifier alone is too simple to capture complex patterns (Accuracy 66%). 
 - Add dropout layer control in the configuration ([training_config.json](config/training_config.json)).
-- Disable learning rate warmup, otherwise the learning rate can remind too low and results in a fast overfiting.
+- Disable learning rate warmup, otherwise the learning rate can remain too low and results in a fast overfiting.
 
 
 
