@@ -7,7 +7,11 @@ This project is a sentiment classifier tool built using **Hugging Face** librari
 
 The final model is deployed on both the **Streamlit Share Server** (Public link: https://sentimentclassificationaws-nq67u8bs4qsjdwcqsa4lso.streamlit.app/) and **AWS EC2** instance.
 
+<div align="center">
+
 ![Demo](assets/demo_streamlit.gif)
+
+</div>
 
 ## Output Examples
 - Review: I recently watched this movie and was absolutely blown away by the performances. The story was heartwarming and the characters were incredibly well-developed. It kept me engaged from beginning to end, and I couldn’t stop smiling by the time it was over. Definitely one of the best films I’ve seen this year! ⇒ **Prediction: positive (98.64%)**
@@ -188,6 +192,19 @@ The application will be publicly accessible to anyone with the instance’s publ
 - Freeze the backbone of the model during training. Note that keeping the last encoder layer (bert.encoder.layer.3) trainable allows for greater task-specific adaptation; otherwise, the classifier alone is too simple to capture complex patterns (Accuracy 66%). 
 - Add dropout layer control in the configuration ([training_config.json](config/training_config.json)).
 - Disable learning rate warmup, otherwise the learning rate can remain too low and results in a fast overfiting.
+- The final model has the following performances on the test set:
+
+<div align="center">
+
+| Metric   | Value |
+|----------|-------|
+| Accuracy | 0.84  |
+| Precision| 0.96  |
+| Recall   | 0.77  |
+| F1 Score | 0.85  |
+
+</div>
+
 
 
 
