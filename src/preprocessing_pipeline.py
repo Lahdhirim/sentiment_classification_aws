@@ -3,7 +3,6 @@ from src.base_pipeline import BasePipeline
 from colorama import Fore, Style
 from src.utils.toolbox import load_csv_data
 from src.utils.schema import DataSchema
-from datasets import Dataset
 from sklearn.model_selection import train_test_split 
 
 class PreprocessingPipeline(BasePipeline):
