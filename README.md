@@ -188,6 +188,30 @@ The application will be publicly accessible to anyone with the instance’s publ
 - To allow access from any IP address, set the Source  `to 0.0.0.0/0` on TCP port  `8501`.\
     ⚠️ Use  `0.0.0.0/0` only if you're aware of the security implications. For more restricted access, specify your own IP or a limited range.
 
+## Running the Pipelines
+
+There are four main execution modes, recommended in the following order:
+
+### Preprocess the Data (mandatory to collect the data)
+```bash
+python main.py process_data
+```
+
+### Run the Training Pipeline (mandatory to find the best model)
+```bash
+python main.py train
+```
+
+### Run the Testing Pipeline (mandatory to push the best model to S3 Bucket)
+```bash
+python main.py test
+```
+
+### Run the Web Application
+```bash
+python main.py inference
+```
+
 ## (BONUS) Steps to reduce overfitting
 - Freeze the backbone of the model during training. Note that keeping the last encoder layer (bert.encoder.layer.3) trainable allows for greater task-specific adaptation; otherwise, the classifier alone is too simple to capture complex patterns (Accuracy 66%). 
 - Add dropout layer control in the configuration ([training_config.json](config/training_config.json)).
