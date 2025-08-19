@@ -5,7 +5,6 @@ class InferenceConfig(BaseModel):
     bucket_name: str = Field(..., description="Name of the S3 bucket containing the model")
     local_model_dir: str = Field(..., description="Local path where the model will be downloaded")
     s3_model_prefix: str = Field(..., description="S3 prefix (folder path) where model files are located")
-    model_task: str = Field(..., description="Hugging Face task (e.g., 'text-classification')")
 
 def inference_config_loader(config_path: str) -> InferenceConfig:
     try:

@@ -17,7 +17,7 @@ def load_pipeline():
     s3_manager.download_directory(s3_prefix=config.s3_model_prefix, local_directory_path=config.local_model_dir)
 
     # Build pipeline
-    return pipeline(config.model_task, model=config.local_model_dir)
+    return pipeline("text-classification", model=config.local_model_dir)
 
 # UI
 st.title("Sentiment Analysis Application")
